@@ -1,0 +1,63 @@
+.headerContainer {
+    height: 5rem;
+    border-bottom: 1px solid var(--gray-800);
+}
+
+.headerContent {
+    max-width: 1120px;
+    height: 5rem;
+    margin: 0 auto; //Alinha ao centro horizontalmente
+    padding: 0 2rem; //Para caso o usuário reduza a tela para menos de 1120px fique um espaçamento nas laterais
+
+    display: flex;
+    align-items: center; // Tudo verticalmente alinhado ao centro dentro do conteúdo do header
+
+    nav {
+        margin-left: 5rem;
+        height: 5rem; //para que o nav ocupe toda a altura, facilita na posição do indicador
+
+        a {
+            display: inline-block;
+            position: relative;
+            padding: 0 0.5rem;
+            height: 5rem;
+            line-height: 5rem; //Para que a altura toda seja ocupada mas o texto centralizado. Se colocar line height = height o texto fica no centro
+            color: var(--gray-300);
+
+            transition: color 0.2s;
+
+            &:hover {
+                color: var(--white);
+            }
+
+            & + a {
+                margin-left: 2rem;
+            }
+
+            &.active {
+                color: var(--white);
+                font-weight: bold;
+            }
+
+            &.active::after {
+                //Tudo depois do conteúdo do elemento <a/>, antes de fechar a tag
+                content: ""; //Tem que ter content mesmo que não exista
+
+                height: 3px;
+                border-radius: 3px 3px 0 0; //começa left top e roda, sentido horário
+                width: 100%;
+                position: absolute;
+                bottom: 1px; // para não ocupar a linha cinza
+                left: 0;
+                background: var(--yellow-500);
+            }
+        }
+    }
+
+    button {
+        margin-left: auto; //dá o máximo de margin-left que puder
+        //O estilo está dentro do header e não dentro do componente
+        //por uma boa razão. Só quero que esse botão esteja na extrema direita
+        //quando ele estiver dentro do header.
+    }
+}
